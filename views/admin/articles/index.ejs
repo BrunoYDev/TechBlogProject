@@ -1,0 +1,50 @@
+<%- include('../../partials/header') %>
+
+<body>
+    <%- include('../../partials/navbar') %>
+    <div class="container">
+        <hr>
+        <h2>Articles</h2>
+        <a href="/admin/articles/new" class="btn btn-success">Create Article</a>
+        <hr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Title</th>
+                    <th>Slug</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% articles.forEach(article => { %>
+                    <tr>
+                        <td><%= article.id %></td>
+                        <td><%= article.title %></td>
+                        <td><%= article.slug %></td>
+                        <td><%= article.category.title %></td>
+                        <td>
+                            <form method="POST" action="/articles/delete" style="display: inline;" onsubmit="deleteConfirmation(event, this)">
+                                <input type="hidden" name="id" value="<%= article.id %>">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<%- include('../../partials/footer') %>
+<script>
+    const deleteConfirmation = (e, form) => {
+        e.preventDefault();
+        let decision = confirm('Do you want to delete this Article?');
+        if(decision){
+            form.submit();
+        }
+        return;
+    }
+</script>
