@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const connection = require('./database/database');
 
+const categoriesController = require('./categories/categories.controller');
+const articlesController = require('./articles/articles.controller');
+
 // Change view engine to ejs
 app.set('view engine', 'ejs');
 
@@ -25,6 +28,9 @@ app.get('/',(req,res) => {
     res.render('index');
 });
 
+app.use('/', categoriesController);
+
+app.use('/', articlesController);
 
 // Initialize Server
 app.listen(8080, () => {
