@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const connection = require('./database/database');
+const session = require('express-session');
 
 const categoriesController = require('./categories/categories.controller');
 const articlesController = require('./articles/articles.controller');
@@ -12,6 +13,14 @@ const User = require('./users/User');
 
 // Change view engine to ejs
 app.set('view engine', 'ejs');
+
+// sessions
+app.use(session({
+    secret: 'asdjklajiedjaklfjiçjf',
+    cookie: {maxAge: 30000},
+    resave: true,
+    saveUninitialized: true
+}))
 
 // Create static folder(for images, files etc)
 app.use(express.static('public'));
