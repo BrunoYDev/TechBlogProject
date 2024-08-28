@@ -1,30 +1,37 @@
 <%- include('partials/header') %>
 
 <body>
-    <%- include('partials/homenavbar') %>
-    <div class="container">
-        <hr>
-        <div class="jumbotron">
-            <h1 class="display-4">Welcome</h1>
-            <p class="lead">This is a simple blog from Bruno Garcia</p>
-            <hr class="my-4">
-            <p>This blog is made for study porpouses!</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Read More</a>
-        </div>
-        <% articles.forEach(article => { %>
-        
-         <div class="card">
-            <div class="card-header">
-                <h2><%= article.title %></h2>
-            </div>    
-            <div class="card-body">
-                <a class="btn btn-success" href="/<%= article.slug %>">Read Article</a>
-            </div>
-         </div>
-         <br>
-        <% }) %>
-
+  <%- include('partials/homenavbar') %>
+  <div class="container">
+    <hr />
+    <div class="jumbotron">
+      <h1 class="display-4">Welcome</h1>
+      <p class="lead">This is a simple blog from Bruno Garcia</p>
+      <hr class="my-4" />
+      <p>This blog is made for study porpouses!</p>
+      <a class="btn btn-primary btn-lg" href="#" role="button">Read More</a>
     </div>
+    <% articles.forEach(article => { %>
+
+    <div class="card">
+      <div class="card-header">
+        <h2><%= article.title %></h2>
+      </div>
+      <div class="card-body">
+        <a class="btn btn-success" href="/<%= article.slug %>">Read Article</a>
+      </div>
+    </div>
+    <br />
+    <% }) %>
+
+    <div class="row">
+      <div class="col col-12">
+        <a style="float: right" href="/articles/page/2">Next >>></a>
+      </div>
+      <hr />
+    </div>
+    <hr />
+  </div>
 </body>
 
 <%- include('partials/footer') %>

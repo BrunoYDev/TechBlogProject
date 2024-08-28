@@ -30,7 +30,8 @@ connection.authenticate().then(() => {
 
 app.get('/',(req,res) => {
     Article.findAll({
-        order: [['id','desc']]
+        order: [['id','desc']],
+        limit: 2
     }).then((articles) => {
         Category.findAll().then((categories) => {
             res.render('index',{articles: articles, categories: categories});
@@ -63,7 +64,10 @@ app.get('/category/:slug',(req,res) => {
         where:{
             slug: slug,
         },
-        include: [{model: Article}]
+        include: [{
+            model: Article,
+        }],
+        order: [[Article,'id', 'DESC']]
     }).then((category) => {
         if(category != undefined){
             Category.findAll().then((categories) => {
