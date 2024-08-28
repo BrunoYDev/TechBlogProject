@@ -4,10 +4,11 @@ const connection = require('./database/database');
 
 const categoriesController = require('./categories/categories.controller');
 const articlesController = require('./articles/articles.controller');
+const usersController = require('./users/users.controller');
 
 const Article = require('./articles/Article');
 const Category = require('./categories/Category');
-const { where } = require('sequelize');
+const User = require('./users/User');
 
 // Change view engine to ejs
 app.set('view engine', 'ejs');
@@ -84,6 +85,8 @@ app.get('/category/:slug',(req,res) => {
 app.use('/', categoriesController);
 
 app.use('/', articlesController);
+
+app.use('/', usersController);
 
 // Initialize Server
 app.listen(8080, () => {
